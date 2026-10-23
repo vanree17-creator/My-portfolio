@@ -19,11 +19,11 @@ const CONTENT = {
 
   // Put a square photo in the "assets" folder and write its file name here,
   // e.g. "assets/photo.jpg". Leave it as "" to show initials instead.
-  photo: "",
+  photo:"assets/photo.jpg",
 
   // Put the CV in the "assets" folder, e.g. "assets/Evance-Komba-CV.pdf".
   // Leave it as "" to hide the "Download CV" button.
-  cv: "",
+  cv:"",
 
   shortBio:
     "I build machine learning models and full-stack web applications that solve real problems in Africa.",
