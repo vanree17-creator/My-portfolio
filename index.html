@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Evance Daniel Komba · Portfolio</title>
+  <meta name="description" content="Portfolio of Evance Daniel Komba: machine learning and full-stack web projects.">
+  <!-- Poppins: the rounded, modern font used in the design -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Top navigation: each link opens one tab (section) -->
+  <header class="nav" id="nav">
+    <div class="wrap nav-inner">
+      <a class="brand" href="#home">Portfolio</a>
+      <nav id="menu">
+        <a href="#home" class="active">Home</a>
+        <a href="#about">About</a>
+        <a href="#projects">Projects</a>
+        <a href="#skills">Skills</a>
+        <a href="#education">Education</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Animated "neural network" background behind every tab, drawn by main.js -->
+  <canvas id="network" aria-hidden="true"></canvas>
+
+  <main>
+    <!-- Hero: text on the left, glowing photo on the right -->
+    <section class="hero page" id="home">
+      <div class="wrap hero-inner">
+        <div class="hero-text">
+          <p class="hello">Hello, It's Me</p>
+          <h1 id="name"></h1>
+          <p class="typed">And I'm a <span id="typed"></span><span class="cursor">|</span></p>
+          <p class="title" id="title"></p>
+          <p class="lead" id="shortBio"></p>
+          <div class="socials" id="socials"></div>
+          <div class="buttons" id="heroButtons"></div>
+        </div>
+        <div class="avatar-wrap">
+          <div class="avatar" id="avatar"></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="about" class="wrap section page">
+      <h2>About <span>Me</span></h2>
+      <div id="about-text"></div>
+      <h3>Open to</h3>
+      <ul class="tags" id="openTo"></ul>
+      <p class="muted" id="languages"></p>
+    </section>
+
+    <section id="projects" class="wrap section page">
+      <h2>My <span>Projects</span></h2>
+      <!-- Filter buttons: show All, ML, AI or Web projects -->
+      <div class="filters" id="filters"></div>
+      <div class="grid" id="projectList"></div>
+    </section>
+
+    <section id="skills" class="wrap section page">
+      <h2>My <span>Skills</span></h2>
+      <div class="grid skills" id="skillList"></div>
+    </section>
+
+    <section id="education" class="wrap section page">
+      <h2><span>Education</span></h2>
+      <div id="eduList"></div>
+      <h3 class="sub">Communities</h3>
+      <div class="grid" id="communityList"></div>
+    </section>
+
+    <section id="contact" class="wrap section page">
+      <h2>Contact <span>Me</span></h2>
+      <p>The best way to reach me is by email. References are available on request.</p>
+      <div class="contact-list" id="contactButtons"></div>
+    </section>
+  </main>
+
+  <footer class="wrap footer" id="footer"></footer>
+
+  <!-- content.js holds all the text; main.js puts it on the page -->
+  <script src="content.js"></script>
+  <script src="main.js"></script>
+</body>
+</html>
