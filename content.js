@@ -5,6 +5,8 @@
  *    - change text between the quotes "..."
  *    - to add a project, copy one { ... } block inside "projects"
  *      and paste it after a comma.
+ *    - to add a video, copy one { ... } block inside "videos"
+ *      and paste it after a comma.
  *  You never need to touch index.html or style.css.
  * ============================================================
  */
@@ -81,6 +83,41 @@ const CONTENT = {
       tech: ["Python", "pandas", "scikit-learn"],
       result: "Ongoing — see my Zindi profile.",
       link: "https://zindi.world/users/vanree_thon",
+    },
+  ],
+
+  // ------------------------------------------------------------
+  //  VIDEOS  (shown in the "Videos" tab)
+  //  For each video fill in ONE of these two ways:
+  //    1) youtube: paste the normal YouTube link, e.g.
+  //         "https://www.youtube.com/watch?v=abc123XYZ_0"
+  //         "https://youtu.be/abc123XYZ_0"
+  //    2) file: a video saved in your "videos" folder, e.g.
+  //         "videos/demo.mp4"   (optional poster: "assets/demo-thumb.jpg")
+  //  If both are empty, a "Video coming soon" box is shown instead.
+  //  To add more videos, copy one { ... } block and paste it after a comma.
+  // ------------------------------------------------------------
+  videos: [
+    {
+      title: "AGRI-SENSE AI demo",
+      description: "A short walkthrough of how the soil health tool works.",
+      youtube: "",
+      file: "",
+      poster: "",
+    },
+    {
+      title: "Catarina's Delights demo",
+      description: "Ordering flow of the online shop, from browsing to delivery.",
+      youtube: "",
+      file: "",
+      poster: "",
+    },
+    {
+      title: "My learning journey",
+      description: "What I am learning in machine learning and web development.",
+      youtube: "",
+      file: "",
+      poster: "",
     },
   ],
 

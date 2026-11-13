@@ -78,6 +78,48 @@ $("filters").addEventListener("click", (e) => {
 });
 renderProjects("All");
 
+// ---- Videos ----
+// Turn any normal YouTube link (watch?v=..., youtu.be/..., /embed/..., /shorts/...)
+// into the 11-character video ID. Returns "" if the link is not a YouTube link.
+function youtubeId(url) {
+  const m = String(url).match(/(?:youtu\.be\/|[?&]v=|\/embed\/|\/shorts\/)([A-Za-z0-9_-]{11})/);
+  return m ? m[1] : "";
+}
+
+// Build the picture/player box for one video.
+// Priority: YouTube link, then a local video file, otherwise a "coming soon" box.
+function videoFrame(v) {
+  const id = v.youtube ? youtubeId(v.youtube) : "";
+  if (id) {
+    // youtube-nocookie.com is YouTube's privacy-friendlier embed address.
+    return `<div class="video-frame">
+      <iframe src="https://www.youtube-nocookie.com/embed/${id}" title="${esc(v.title)}"
+              loading="lazy" allowfullscreen
+              allow="accelerometer; encrypted-media; gyroscope; picture-in-picture"></iframe>
+    </div>`;
+  }
+  if (v.file) {
+    // preload="metadata" loads only the video's length/size, not the whole file, so the page stays fast.
+    return `<div class="video-frame">
+      <video controls playsinline preload="metadata"${v.poster ? ` poster="${esc(v.poster)}"` : ""}>
+        <source src="${esc(v.file)}">
+        Your browser does not support video playback.
+      </video>
+    </div>`;
+  }
+  return `<div class="video-frame empty">Video coming soon</div>`;
+}
+
+const videos = C.videos || [];
+$("videoList").innerHTML = videos.length
+  ? videos.map((v) => `
+    <article class="card video-card">
+      ${videoFrame(v)}
+      <h3>${esc(v.title)}</h3>
+      ${v.description ? `<p class="muted">${esc(v.description)}</p>` : ""}
+    </article>`).join("")
+  : `<p class="muted">Videos will be added soon.</p>`;
+
 // ---- Skills ----
 $("skillList").innerHTML = C.skills.map((s) => `
   <div class="card">
@@ -215,6 +257,16 @@ function openTab() {
   const id = location.hash.slice(1) || "home";             // no hash = Home
   const target = document.getElementById(id);
   const page = target && target.classList.contains("page") ? target : $("home");
+
+  // Leaving a tab? Pause any playing video so sound does not keep going in the background.
+  document.querySelectorAll(".page:not(.active) video").forEach((v) => v.pause());
+  // YouTube players cannot be paused from here, so we reload their address to stop them.
+  pages.forEach((p) => {
+    if (p !== page && p.classList.contains("active")) {
+      p.querySelectorAll("iframe").forEach((f) => { f.src = f.src; });
+    }
+  });
+
   pages.forEach((p) => p.classList.toggle("active", p === page));
   menuLinks.forEach((a) => a.classList.toggle("active", a.getAttribute("href") === `#${page.id}`));
   window.scrollTo(0, 0);                                   // start each tab at the top
